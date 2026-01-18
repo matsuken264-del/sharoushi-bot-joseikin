@@ -22,7 +22,6 @@ const knowledgeBaseFiles = [
 { uri: "https://generativelanguage.googleapis.com/v1beta/files/efhp0tm30lj2", mimeType: "application/pdf" }, // 001239651.pdf
 { uri: "https://generativelanguage.googleapis.com/v1beta/files/rwaoxcifaomy", mimeType: "application/pdf" }, // 001239656.pdf
 { uri: "https://generativelanguage.googleapis.com/v1beta/files/9t1ro2sisvev", mimeType: "application/pdf" }, // 001239657.pdf
-/ 001239700.pdf
 { uri: "https://generativelanguage.googleapis.com/v1beta/files/pzpfy0s52he0", mimeType: "application/pdf" }, // 001239702.pdf
 { uri: "https://generativelanguage.googleapis.com/v1beta/files/z80pmwbf35mk", mimeType: "application/pdf" }, // 001239703.pdf
 { uri: "https://generativelanguage.googleapis.com/v1beta/files/vejs1ojkkd8r", mimeType: "application/pdf" }, // 001239712.pdf
