@@ -16,7 +16,7 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const knowledgeBaseFiles = [
   // 例: { uri: "...", mimeType: "..." },
   // ↓↓↓ ここに貼り付け ↓↓↓
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/zvhsetrdhgcm", mimeType: "application/pdf" }, // 1-798.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/663plokfacwq", mimeType: "application/pdf" }, // 001239584.pdf
 
   // ↑↑↑ ここに貼り付け ↑↑↑
 ]; 
