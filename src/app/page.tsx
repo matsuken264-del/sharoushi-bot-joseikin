@@ -23,7 +23,7 @@ export default function Home() {
     {
       id: 'init-1',
       role: 'ai',
-      content: 'こんにちは！社会保険・労働保険AIアシスタント（雇用保険・助成金編（テスト版））（Gemini 3 Pro Preview搭載）です。\n\nRAG（固定資料）とWeb検索を駆使して回答します。資料のアップロードも可能です。\n\n何かお手伝いできることはありますか？\n\n※助成金編はテスト版です。RAGはリーフレットレベルです。\n\n◆注意事項・免責事項\n\n※個人情報の入力は行わないでください。\n\n※生成AIは誤った回答する場合があります。参考・補助に止め、元の資料等で確認するようにしてください。\n\n※AIの回答によって生じた損害については、一切責任を負いません。\n\nproduced by [M\'s Lab 人材マネジメント研究所（HPの名称です）](https://sites.google.com/view/ragunarockguy/%E3%83%9B%E3%83%BC%E3%83%A0?authuser=0)'
+      content: 'こんにちは！人材確保AIコンサルタント（Gemini 3.1 Pro Preview搭載）です。\n\n資料(求人票・人事面談記録（個人情報不可）など)のアップロードが可能です。\n\n何かお手伝いできることはありますか？\n\n◆注意事項・免責事項\n\n※個人情報の入力は行わないでください。\n\n※生成AIは誤った回答する場合があります。参考・補助に止めてください。\n\n※AIの回答によって生じた損害については、一切責任を負いません。※利用者の責任と判断においてご利用ください。'
     }
   ]);
   // 送信中のローディング状態
@@ -146,7 +146,7 @@ export default function Home() {
       {/* ヘッダー */}
       <header className="flex items-center p-4 bg-white dark:bg-gray-800 shadow-md z-10">
         <Bot className="w-8 h-8 text-blue-500 mr-3" />
-        <h1 className="text-xl font-bold">社会保険・労働保険AIアシスタント（雇用保険・助成金編） (Gemini 3 Pro Preview)</h1>
+        <h1 className="text-xl font-bold">人材確保AIコンサルタント (Gemini 3.1 Pro Preview)</h1>
       </header>
 
       {/* チャットエリア */}
@@ -242,7 +242,7 @@ export default function Home() {
               <div className="flex-1 relative">
                 <textarea
                 name="question"
-                placeholder="質問を入力してください..."
+                placeholder="コメントを入力してください..."
                 rows={2} // 初期高さを少し低く
                 className="w-full p-3 bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-gray-800 dark:text-gray-200"
                 onKeyDown={(e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -267,12 +267,12 @@ export default function Home() {
           <div className="flex items-center justify-between mt-3 text-sm text-gray-600 dark:text-gray-400">
              <label htmlFor="file-upload" className="cursor-pointer flex items-center hover:text-blue-500">
                  <Paperclip className="w-5 h-5 mr-2" />
-                 <span>追加資料を添付 (PDF)</span>
+                 <span>対象資料(求人票・人事面談記録（個人が特定される情報不可）など)をアップロード (PDF,JPEG,PNG)</span>
                  <input
                     id="file-upload"
                     type="file"
                     name="files"
-                    accept="application/pdf"
+                    accept="application/pdf, image/jpeg, image/png"
                     multiple
                     className="hidden" // input自体は隠す
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {

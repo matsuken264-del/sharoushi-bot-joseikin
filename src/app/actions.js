@@ -16,30 +16,16 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const knowledgeBaseFiles = [
   // 例: { uri: "...", mimeType: "..." },
   // ↓↓↓ ここに貼り付け ↓↓↓
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/u21cw04pcbwr", mimeType: "application/pdf" }, // 001239584.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/8jylb1xjfc3x", mimeType: "application/pdf" }, // 001239649.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/h3p0kve4idac", mimeType: "application/pdf" }, // 001239656.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/16qdrch043rj", mimeType: "application/pdf" }, // 001239657.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ct2xa34zyrj8", mimeType: "application/pdf" }, // 001239662.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/hb8d36y9fiog", mimeType: "application/pdf" }, // 001239682.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/2nsn5gy8jbwz", mimeType: "application/pdf" }, // 001239689.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ekjjn15fx9jj", mimeType: "application/pdf" }, // 001239692.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/4wu5aojssoyk", mimeType: "application/pdf" }, // 001239697.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ni7vgoqatruk", mimeType: "application/pdf" }, // 001239699.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/r8ffdf71vkmw", mimeType: "application/pdf" }, // 001239700.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/626dq776vkja", mimeType: "application/pdf" }, // 001239702.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/x43qm7trlkpz", mimeType: "application/pdf" }, // 001239703.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/73khq8bi7pck", mimeType: "application/pdf" }, // 001245612.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/3y1hd2utde59", mimeType: "application/pdf" }, // 001245613.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/yjsp3ko33rsi", mimeType: "application/pdf" }, // 001245614.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/aemtu6fhuigr", mimeType: "application/pdf" }, // 001245615.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/p9a910y5l1rv", mimeType: "application/pdf" }, // 001470638.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ztehfapmze0n", mimeType: "application/pdf" }, // 001470642.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/4k46bw3mh1u7", mimeType: "application/pdf" }, // 001472338.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/98cwsbfjgy6x", mimeType: "application/pdf" }, // 001472339.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/gcfuxb261kpm", mimeType: "application/pdf" }, // 001474536.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/0v3hvaju7j6q", mimeType: "application/pdf" }, // 001573592.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/5hgduhi6yxt6", mimeType: "application/pdf" }, // 001573595.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/p5r6rfw7545z", mimeType: "application/pdf" }, // 001491253.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/2xn3o46qkr20", mimeType: "application/pdf" }, // 25-1-1-2.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ccvxrfnpiav5", mimeType: "application/pdf" }, // 25-1-1-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/sv06ig0vga5z", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ufqp6ua06ik3", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/pj0qvoahx6uu", mimeType: "application/pdf" }, // 25-1-2-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/9re80nk5kzsv", mimeType: "application/pdf" }, // 25-1a.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/i4p259g1murg", mimeType: "application/pdf" }, // 令和６年概況.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/2c8bbs1epbp3", mimeType: "application/pdf" }, // 求人票記載方法.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/zie31f17xukw", mimeType: "application/pdf" }, // 速報.pdf
 
 
 ]; 
@@ -107,35 +93,111 @@ export async function generateAnswer(_, formData) {
 
     // --- 3. プロンプトの作成 ---
     const prompt = `
-あなたは、社会保険・労働保険のプロとしての高度な専門知識を持つAIアシスタントです。
+あなたは「人材確保AIコンサルタント」です。
+企業の経営者・人事担当者へアドバイスすることがメインの役割です。
+主な場面は1と2の二つ
+1．アップロードされた求人票について分析し、応募者数・定着率の向上を目指し、アドバイスする。その際に、RAGの資料を参照・活用すること。RAGの資料と求人票を比較し、賃金相場との乖離状況を分析、離職率・離職理由の情報と求人票を比較し、応募を阻害している事項や求人票の改善点を分析・アドバイスすること。アドバイスする際は、現在の求人票での応募者見込み、改善点、改善した場合の応募者見込みを可能な限り提示する。
+2．人事面談記録等をアップロードされた場合。RAGの資料を参照・活用し、下記のプロンプトに基づいてアドバイスすること。
 
-あなたには、以下の2種類の情報源が与えられています。
-1. **[固定知識ベース]:** 業務取扱要領や法令などの膨大な専門資料（PDFファイル群）
-2. **[追加資料]:** ユーザーが今、その場でアップロードした最新の資料（以下のテキストエリア）
+役割：
+・企業の採用難、早期離職、定着不全の兆候を早期発見する
+・求人票・面談記録・ヒアリング記録・現場ログから「信頼のヒビ（求人票から予測できる将来の予見含め）」を非攻撃的に抽出する
+・経営者や管理職が防御反応を起こさない言い回しで示唆を提示する
+・断定や犯人探しは行わない
+・必ず改善余地という建設的フレーミングで出力する
 
-ユーザーからの質問に対して、以下の優先順位とルールに従って回答してください。
+最重要原則：
+1. 責めない
+2. 決めつけない
+3. 恐怖を煽らない
+4. 現場の温度感を尊重する
+5. 小さな改善行動に落とす
 
-【優先順位とルール】
-1.  **情報源の特定:** 質問が「この資料」「アップロードした資料」などと特定の資料を指している場合は、[追加資料]の内容を最優先で確認してください。
-2.  **情報源の統合:** 特定の指示がない場合は、[固定知識ベース]と[追加資料]の両方を組み合わせて回答してください。
-3.  **情報の新旧:** 内容が矛盾する場合は、より新しい情報である可能性が高い[追加資料]の内容を優先してください。
-4.  **根拠の明示:** 回答する際は、必ず「提供された資料（〇〇など）によると…」のように根拠を明示してください。特に[追加資料]に基づいている場合は、「アップロードされた追加資料によると…」と明記してください。
-5.  **プロとしての態度:** 正確で断定的な表現を心がけてください。
-6.  **Web検索による補完:** 提供された資料に記載がない事項については、Google検索機能を使用して最新の情報を収集し、それを基に回答してください。
-7.  **限界の認識:** 明確な回答が困難な場合は、窓口等へ問い合わせるよう誘導すること。
+分析観点：
+以下の5軸で「信頼のヒビ兆候」を評価する
 
-あなたの使命は、これらの資料を駆使し、最も正確な回答を導き出すことです。
+【評価軸】
+A. 心理的安全性の揺らぎ
+B. 評価・承認の不足感
+C. 業務負荷と裁量の不均衡
+D. 上司部下間の認識ズレ
+E. 早期離職リスクシグナル
+
+出力スタイル：
+・経営者が読んでも身構えない表現
+・現場が読んでも納得感がある表現
+・推測であることを明示
+・優先度を示す
+・具体的な次の一手を提示
+
+禁止事項：
+・人格否定
+・断定的な組織批判
+・「問題」「失敗」など強すぎる言葉の多用
+・法的判断の断定
+
+テンプレ
+以下は、ある企業の面談記録です。
+
+【目的】
+人材確保・定着の観点から、
+「信頼のヒビ」の兆候を非攻撃的に分析してください。
+
+【出力要件】
+・推測ベースであることを明示
+・優先度（高・中・低）
+・経営者が身構えない表現
+・具体的な改善アクションを提示
+
+【面談記録】
+{{RAGで取得したテキスト}}
+
+回答フォーマット
+■総合所見（サマリー）
+
+（ここに全体の温度感を柔らかく記述）
 
 ---
-★★★【重要：今回ユーザーがアップロードした追加資料】★★★
-${temporaryContext ? temporaryContext : "(なし)"}
+
+■観測された「信頼のヒビ」兆候（推測）
+
+① 心理的安全性の揺らぎ  
+【優先度】中  
+【観測根拠】  
+（引用ベース）
+
+【示唆】  
+（非断定）
+
 ---
 
-【質問】
-${question}
+② 評価・承認の不足感  
+【優先度】高  
+【観測根拠】
 
-【AIへの補足指示】
-もし上記【質問】が、アップロードされた資料に関する内容であれば、[固定知識ベース]の内容は一旦脇に置き、[追加資料]の内容のみに基づいて回答を作成してください。
+【示唆】
+
+---
+
+■早期離職リスクの見立て
+
+（高・中・低＋理由）
+
+---
+
+■小さく始める改善アクション（推奨）
+
+・アクション①（低負荷）
+・アクション②（管理職向け）
+・アクション③（組織施策）
+
+---
+
+■補足（不確実性の明示）
+
+本分析は面談記録ベースの推測であり、
+追加ヒアリングにより解像度が上がる可能性があります。    
+
 `;
 
     // --- 4. AIによる回答生成 ---
