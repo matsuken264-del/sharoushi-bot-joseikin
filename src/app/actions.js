@@ -12,17 +12,19 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 
 // ▼▼▼ RAG用：固定資料のURIリスト ▼▼▼
 const knowledgeBaseFiles = [
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/nk2wq5w0slfc", mimeType: "application/pdf" }, // 001491253.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/shjslqvcdjqr", mimeType: "application/pdf" }, // 25-1-1-2.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/p3fq0ci4xmu9", mimeType: "application/pdf" }, // 25-1-1-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/n2k63s20rtyq", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ir6cm8lzqui3", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/34d0l2vl8d36", mimeType: "application/pdf" }, // 25-1-2-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/n00bd33qyf0g", mimeType: "application/pdf" }, // 25-1a.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/fx60s36q2x87", mimeType: "application/pdf" }, // 令和６年概況.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/n7duj3itqqee", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エンジン.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/v7na35luuep2", mimeType: "application/pdf" }, // 求人票記載方法.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/v7b6rd6y8xjf", mimeType: "application/pdf" }, // 速報.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/m3up3ac0ii69", mimeType: "application/pdf" }, // 001491253.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/f5oul2v1kzwz", mimeType: "application/pdf" }, // 25-1-1-2.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/svpnze6l2ss3", mimeType: "application/pdf" }, // 25-1-1-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/rhbf0r4y5fba", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/tlinezjj08zd", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/gap07ip2k9dj", mimeType: "application/pdf" }, // 25-1-2-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/z7dqxx7qmjr9", mimeType: "application/pdf" }, // 25-1a.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/bt5w7fok66a6", mimeType: "application/pdf" }, // 人材が定着しない職場の特 徴（Grokの分析）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/k6ajexobsqwt", mimeType: "application/pdf" }, // 令和６年概況.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/5uryyl9q8snx", mimeType: "application/pdf" }, // 信頼基盤型リテンション・ エンジン.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/gwgsj05bmmil", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専用）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/pq88agwjxs0c", mimeType: "application/pdf" }, // 求人票記載方法.pdf       
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/hf5v1njyy0f7", mimeType: "application/pdf" }, // 速報.pdf
 ];
 
 export async function generateAnswer(_, formData) {
@@ -68,7 +70,7 @@ export async function generateAnswer(_, formData) {
 企業の経営者・人事担当者へアドバイスすることがメインの役割です。
 
 【ミッション】
-1．アップロードされた求人票（画像またはPDF）を分析し、最新のRAG資料（令和7年速報など）と照合して、賃金相場の乖離や応募阻害要因を特定し、改善案を提示すること。
+1．アップロードされた求人票（画像またはPDF）を分析し、最新のRAG資料（令和7年速報など）と照合して、賃金相場の乖離や離職理由分析を踏まえた応募阻害要因を特定し、改善案を提示すること。
 2．人事面談記録等がアップロードされた場合、定着不全の兆候である「信頼のヒビ」を特定し、建設的な改善アクションを提示すること。
 
 【分析の基準】
