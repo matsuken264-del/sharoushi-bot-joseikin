@@ -12,19 +12,19 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 
 // ▼▼▼ RAG用：固定資料のURIリスト ▼▼▼
 const knowledgeBaseFiles = [
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ciiylj4v5glv", mimeType: "application/pdf" }, // 001491253.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/rz8yfbqdsllb", mimeType: "application/pdf" }, // 25-1-1-2.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/kdzj834s266o", mimeType: "application/pdf" }, // 25-1-1-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/8v6051wigqf4", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/bmxlnvv17ynu", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/5c4e2pwmah2k", mimeType: "application/pdf" }, // 25-1-2-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/khekhos6rgi3", mimeType: "application/pdf" }, // 25-1a.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ce3in28i3u18", mimeType: "application/pdf" }, // 人材が定着しない職場の特徴（Grokの分析）.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/j7rjstozzo00", mimeType: "application/pdf" }, // 令和６年概況.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/71ownrs6osqc", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エンジン.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/zvvcv475j3ir", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専用）.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/fazxbcelh89h", mimeType: "application/pdf" }, // 求人票記載方法.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/92xcj7qru6ib", mimeType: "application/pdf" }, // 速報.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/m69laezvih1c", mimeType: "application/pdf" }, // 001491253.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/b1g4wf40a7px", mimeType: "application/pdf" }, // 25-1-1-2.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/5mddcahuztnv", mimeType: "application/pdf" }, // 25-1-1-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/06jtx2a4bg3k", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/tdqkabwj848h", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/50hwumi33448", mimeType: "application/pdf" }, // 25-1-2-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/od3i88zt6net", mimeType: "application/pdf" }, // 25-1a.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/pc3sjco851cc", mimeType: "application/pdf" }, // 人材が定着しない職場の特徴（Grokの分析）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/5if4aayo7j7s", mimeType: "application/pdf" }, // 令和６年概況.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/0sjv3quvhjye", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エン ジン.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/94b489vssf1t", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専 用）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/indqvddcjooy", mimeType: "application/pdf" }, // 求人票記載方法.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/2d3jf89n336p", mimeType: "application/pdf" }, // 速報.pdf
 ];
 
 export async function generateAnswer(_, formData) {
@@ -69,9 +69,9 @@ export async function generateAnswer(_, formData) {
 あなたは「人材確保AIコンサルタント」です。労働関係諸法令・労働経済・経営学・心理学・人材マネジメントに精通したプロとして、企業の経営者・人事担当者へ、採用難解消と定着率向上のための高度なアドバイスを行います。
 
 【最重要ミッション】
-1. 求人票分析: RAG資料（令和7年速報等）と照合し、賃金相場（3.1%増）との乖離を分析。
+1. 求人票分析: 労働関係諸法令に照らして法令違反がないかどうかをチェック。RAG資料（令和7年速報等）と照合し、賃金相場（3.1%増）との乖離を分析。仕事内容の分析については職業情報提供サイト（https://shigoto.mhlw.go.jp/User/Search/Field?mode=Web）（https://shigoto.mhlw.go.jp/User/Adopition/Step1）を参照すること。
 2. 信頼のヒビ抽出: 求人票や面談記録から、求職者が不安を感じる「隠れたリスク」を特定。
-3. マッチング人材像定義: 以下の「3つの柱」に基づき、ターゲットとすべき人材像を明確化する。
+3. マッチング人材像定義: 以下の「3つの柱」に基づき、ターゲットとすべき人材像を明確化する。仕事内容の分析については職業情報提供サイト（https://shigoto.mhlw.go.jp/User/Search/Field?mode=Web）（https://shigoto.mhlw.go.jp/User/Adopition/Step1）を参照すること。
 
 【新設：マッチング人材像の3本柱】
 ① 仕事内容と性格適性（簡易型MBTI判定）
@@ -90,6 +90,7 @@ export async function generateAnswer(_, formData) {
 
 【回答フォーマット】
 ■総合所見（サマリー）
+■法令違反の有無。有の場合はその内容、是正策。
 ■賃金相場・労働条件の比較分析（令和7年速報値との照合）
 ■観測された「信頼のヒビ」兆候（推測）
 
