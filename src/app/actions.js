@@ -12,21 +12,24 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 
 // ▼▼▼ RAG用：固定資料のURIリスト ▼▼▼
 const knowledgeBaseFiles = [
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/9tco0aefrgik", mimeType: "application/pdf" }, // 001491253.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/vzytyfhtlagj", mimeType: "application/pdf" }, // 25-1-1-2.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/j059e015ryqo", mimeType: "application/pdf" }, // 25-1-1-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/gylp2qbn6lyq", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/na1fw4t66vls", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ldgxnot51ond", mimeType: "application/pdf" }, // 25-1-2-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/srw4bywedet0", mimeType: "application/pdf" }, // 25-1a.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/2820bcih64oz", mimeType: "application/pdf" }, // houkoku_gaiyo.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/9cngtrl63iiz", mimeType: "application/pdf" }, // leaflet.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/b900gzy492fq", mimeType: "application/pdf" }, // 人材が定着しない職場の特徴（Grokの分析）.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/p178j4bqhbk8", mimeType: "application/pdf" }, // 令和６年概況.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/a65fj94w4pgz", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エン ジン.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ka84l4zzwhwz", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専 用）.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ve81vbck47xd", mimeType: "application/pdf" }, // 求人票記載方法.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/car7qwqrj71n", mimeType: "application/pdf" }, // 速報.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/g3v9kmvg0dyo", mimeType: "application/pdf" }, // 001491253.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/3o7j0el9gocf", mimeType: "application/pdf" }, // 25-1-1-2.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/8zbmdgftuv48", mimeType: "application/pdf" }, // 25-1-1-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/et4ih61yva5o", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/l4gui1q1ub2s", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/4xxev42ftawd", mimeType: "application/pdf" }, // 25-1-2-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/smnavol6vibn", mimeType: "application/pdf" }, // 25-1a.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/7klm9vbgq6rg", mimeType: "application/pdf" }, // houkoku_gaiyo.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/l1ovy8l6krna", mimeType: "application/pdf" }, // leaflet.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/6q5evbxg5leu", mimeType: "application/pdf" }, // ストレスチェックシート.pdf    
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ow4xd010z63z", mimeType: "application/pdf" }, // ストレスチェック制度.pdf      
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/fkahfcjhgbul", mimeType: "application/pdf" }, // 人材が定着しない職場の特徴（Grokの分析）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/g6q8j5ekkvrc", mimeType: "application/pdf" }, // 令和６年概況.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/7w5xjrn1ra36", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エンジン.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/hec0jatx95jn", mimeType: "application/pdf" }, // 最低賃金額.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/y0pcxm20up3i", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専用）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/p57e0b0qdx4z", mimeType: "application/pdf" }, // 求人票記載方法.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ncx2jrbzv0s3", mimeType: "application/pdf" }, // 速報.pdf
 ];
 
 export async function generateAnswer(_, formData) {
@@ -81,7 +84,7 @@ export async function generateAnswer(_, formData) {
 早期離職リスクを減らし
 「辞めない採用」を実現することです。
 
-あなたは以下の観点から求人内容・面談記録・企業情報を分析します。
+あなたは以下の観点から求人内容・企業情報を分析します。
 
 ------------------------------------------------
 【参照情報】
@@ -135,7 +138,7 @@ https://shigoto.mhlw.go.jp/User/Adopition/Step1
 
 ③ 信頼リスク分析（Trust Risk）
 
-求人票や面談記録から、求職者が感じる可能性のある
+求人票から、求職者が感じる可能性のある
 
 「信頼のヒビ」
 
@@ -171,6 +174,8 @@ AIは以下を検知する。
 期待ギャップ  
 Trust Break（信頼のヒビ）  
 心理的撤退（Silent Exit）
+
+信頼関係が破断する要因として、ストレスチェックの概念・チェックシートを考慮に入れる。
 
 ------------------------------------------------
 
@@ -234,6 +239,8 @@ Trust Break（信頼のヒビ）
 
 の2軸で分析する。
 
+離職に繋がる要因として、ストレスチェックの概念・チェックシートを考慮に入れる。
+
 改善提案は3段階で提示する。
 
 Level1  
@@ -245,7 +252,7 @@ Level2
 Level3  
 組織文化改善
 
-併せて、利用可能な雇用関係助成金がある場合は提示せよ。
+併せて、利用できる可能性のある雇用関係助成金がある場合は提示せよ。
 
 ------------------------------------------------
 
