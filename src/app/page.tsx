@@ -23,7 +23,7 @@ export default function Home() {
     {
       id: 'init-1',
       role: 'ai',
-      content: 'こんにちは！人材確保AIコンサルタント（Gemini 3.1 Pro Preview搭載）です。\n\n資料(求人票・人事面談記録（個人情報不可）など)のアップロードが可能です。\n\n何かお手伝いできることはありますか？\n\n◆注意事項・免責事項\n\n※個人情報の入力は行わないでください。\n\n※生成AIは誤った回答する場合があります。参考・補助に止めてください。\n\n※AIの回答によって生じた損害については、一切責任を負いません。※利用者の責任と判断においてご利用ください。'
+      content: 'こんにちは！人材確保AIコンサルタント（Gemini 3.1 Pro Preview搭載）です。\n\n資料(求人票の他、雇用管理制度・事業所HP等の補足資料（個人情報不可）など)のアップロードが可能です。\n\n資料をアップロードして数分お待ちください。コンサルティング結果が出力されます。\n\n何かお手伝いできることはありますか？\n\n◆注意事項・免責事項\n\n※個人情報の入力は行わないでください。\n\n※生成AIは誤った回答する場合があります。参考・補助に止めてください。\n\n※AIの回答によって生じた損害については、一切責任を負いません。\n\n※利用者の責任と判断においてご利用ください。\n\nproduced by [M\'s Lab 人材マネジメント研究所（HPの名称です）](https://sites.google.com/view/ragunarockguy/%E3%83%9B%E3%83%BC%E3%83%A0?authuser=0)'
     }
   ]);
   // 送信中のローディング状態
@@ -267,7 +267,7 @@ export default function Home() {
           <div className="flex items-center justify-between mt-3 text-sm text-gray-600 dark:text-gray-400">
              <label htmlFor="file-upload" className="cursor-pointer flex items-center hover:text-blue-500">
                  <Paperclip className="w-5 h-5 mr-2" />
-                 <span>対象資料(求人票・人事面談記録（個人が特定される情報不可）など)をアップロード (PDF,JPEG,PNG)</span>
+                 <span>対象資料(求人票の他、雇用管理制度・事業所HP等の補足資料（個人が特定される情報不可）など)をアップロード (PDF,JPEG,PNG)</span>
                  <input
                     id="file-upload"
                     type="file"
