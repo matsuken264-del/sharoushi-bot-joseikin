@@ -12,24 +12,24 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 
 // ▼▼▼ RAG用：固定資料のURIリスト ▼▼▼
 const knowledgeBaseFiles = [
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/0420av7g83bo", mimeType: "application/pdf" }, // 001491253.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/a4yq655cw3xn", mimeType: "application/pdf" }, // 25-1-1-2.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/1ztntf15tomx", mimeType: "application/pdf" }, // 25-1-1-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/yjpcdtpywgjs", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/jr9zwtwkwjsk", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/dtvbdlwi4b8o", mimeType: "application/pdf" }, // 25-1-2-3.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/3ibb06nd5gwj", mimeType: "application/pdf" }, // 25-1a.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/8uit6ov6eklb", mimeType: "application/pdf" }, // houkoku_gaiyo.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/3zvk2fp4dd29", mimeType: "application/pdf" }, // leaflet.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/rbxutvon8hww", mimeType: "application/pdf" }, // ストレスチェックシート.pdf     
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/cjfb881qsczx", mimeType: "application/pdf" }, // ストレスチェック制度.pdf       
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/p7tq4yhqkxu5", mimeType: "application/pdf" }, // 人材が定着しない職場の特徴（Grokの分析）.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/gcqlid8vcp5g", mimeType: "application/pdf" }, // 令和６年概況.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/6j1egzcb5tdu", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エンジ ン.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/lncpi17ldbh3", mimeType: "application/pdf" }, // 最低賃金額.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/e2j6j40dfnv5", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専用 ）.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/e3a4np87f2j7", mimeType: "application/pdf" }, // 求人票記載方法.pdf
-  { uri: "https://generativelanguage.googleapis.com/v1beta/files/u51m9gka1jrf", mimeType: "application/pdf" }, // 速報.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/w3mfd6zekrhd", mimeType: "application/pdf" }, // 001491253.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/a1ve7ghtrl80", mimeType: "application/pdf" }, // 25-1-1-2.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/efqfu44gns0m", mimeType: "application/pdf" }, // 25-1-1-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/t68frayh3fq5", mimeType: "application/pdf" }, // 25-1-2-2_02.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/zt4j2cuisegt", mimeType: "application/pdf" }, // 25-1-2-2_03.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/5iin0ojn7eji", mimeType: "application/pdf" }, // 25-1-2-3.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/hptdta12ybcc", mimeType: "application/pdf" }, // 25-1a.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/6rglwtjtwia5", mimeType: "application/pdf" }, // houkoku_gaiyo.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/mq5thunhuwnw", mimeType: "application/pdf" }, // leaflet.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/vvliva7fu0i0", mimeType: "application/pdf" }, // ストレスチェックシート.pdf     
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/cceri87gkil9", mimeType: "application/pdf" }, // ストレスチェック制度.pdf       
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ypdikztfi5b6", mimeType: "application/pdf" }, // 人材が定着しない職場の特徴（Grokの分析）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/ln0yqn1pv92a", mimeType: "application/pdf" }, // 令和６年概況.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/zlrrtz4kvo9q", mimeType: "application/pdf" }, // 信頼基盤型リテンション・エンジ ン.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/wco6wou7xeo5", mimeType: "application/pdf" }, // 最低賃金額.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/gs6enyvlsonj", mimeType: "application/pdf" }, // 求人票記載マニュアル（TCRE専用 ）.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/lbhd8turi2wz", mimeType: "application/pdf" }, // 求人票記載方法.pdf
+  { uri: "https://generativelanguage.googleapis.com/v1beta/files/7ovx7lk6odmy", mimeType: "application/pdf" }, // 速報.pdf
 ];
 
 export async function generateAnswer(_, formData) {
