@@ -23,7 +23,7 @@ export default function Home() {
     {
       id: 'init-1',
       role: 'ai',
-      content: 'こんにちは！人材確保AIコンサルタント（Gemini 3.1 Pro Preview搭載）です。\n\n資料(求人票の他、雇用管理制度・事業所HP等の補足資料（個人情報不可）など)のアップロードが可能です。\n\n資料をアップロードして数分お待ちください。コンサルティング結果が出力されます。\n\n何かお手伝いできることはありますか？\n\n◆注意事項・免責事項\n\n※個人情報の入力は行わないでください。\n\n※生成AIは誤った回答する場合があります。参考・補助に止めてください。\n\n※AIの回答によって生じた損害については、一切責任を負いません。\n\n※利用者の責任と判断においてご利用ください。\n\nproduced by [M\'s Lab 人材マネジメント研究所（HPの名称です）](https://sites.google.com/view/ragunarockguy/%E3%83%9B%E3%83%BC%E3%83%A0?authuser=0)'
+      content: 'こんにちは！人材確保AIコンサルタント（Gemini 3.1 Pro Preview搭載）です。\n\n資料(求人票の他、雇用管理制度・事業所HP等の補足資料（個人情報不可）など)のアップロードが可能です。\n\n資料をアップロードして数分お待ちください。コンサルティング結果が出力されます。\n\n何かお手伝いできることはありますか？\n\n◆注意事項・免責事項\n\n※個人情報の入力は行わないでください。\n\n※生成AIは誤った回答する場合があります。参考・補助に止めてください。\n\n※AIの回答によって生じた損害については、一切責任を負いません。\n\n※利用者の責任と判断においてご利用ください。\n\nproduced by [M\'s Lab 人材マネジメント研究所（HPの名称です）](https://sites.google.com/view/ragunarockguy/%E3%83%9B%E3%83%BC%E3%83%A0?authuser=0)\n\n [RAGUNAROCK PROJECTとは？](https://sites.google.com/view/ragunarockguy/raguna-rock-project)'
     }
   ]);
   // 送信中のローディング状態
