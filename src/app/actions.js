@@ -349,3 +349,170 @@ Level3
     };
   }
 }
+export async function generateKadFiveAreaReport(_, formData) {
+  console.log("--- Action started (KAD Five Area Diagnosis Mode) ---");
+
+  const originalQuestion = formData.get("originalQuestion") || "";
+  const basicAnalysis = formData.get("basicAnalysis") || "";
+  const kadAnswersJson = formData.get("kadAnswers") || "{}";
+  const uploadedFiles = formData.getAll("files");
+
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-3.1-pro-preview" });
+
+    const fixedKnowledgeParts = knowledgeBaseFiles.map(file => ({
+      fileData: {
+        mimeType: file.mimeType,
+        fileUri: file.uri
+      }
+    }));
+
+    let uploadParts = [];
+    if (uploadedFiles && uploadedFiles.length > 0 && uploadedFiles[0].size > 0) {
+      console.log(`[KAD Upload] ${uploadedFiles.length} 件のファイルを再度処理します。`);
+
+      for (const file of uploadedFiles) {
+        const arrayBuffer = await file.arrayBuffer();
+        const base64Data = Buffer.from(arrayBuffer).toString("base64");
+
+        uploadParts.push({
+          inlineData: {
+            data: base64Data,
+            mimeType: file.type
+          }
+        });
+      }
+    }
+
+    const kadReportPrompt = `
+あなたは「人材確保AIコンサルタント」です。
+
+これから、通常の求人票分析結果に加えて、企業の採用力を
+「育成力・魅力発信力・受入定着力・条件明確性・情報透明性」
+の5領域から診断してください。
+
+この5領域診断は、KAD採用五行モデルに基づくものです。
+ただし、ユーザー向けには原則として「五行」という言葉を前面に出さず、
+実務的に「採用力5領域診断」として説明してください。
+
+------------------------------------------------
+【採用力5領域】
+
+1. 育成力
+入社後の教育、オンボーディング、成長機会、キャリア形成が見えるか。
+
+2. 魅力発信力
+仕事の意味、やりがい、組織の理念、求職者に伝わる物語があるか。
+
+3. 受入定着力
+相談体制、職場環境、人間関係、心理的安全性、初期フォローがあるか。
+
+4. 条件明確性
+賃金、労働時間、休日、雇用形態、評価基準、ルールが明確か。
+
+5. 情報透明性
+一日の流れ、繁忙期、業務の実態、大変な点、ミスマッチ要因などが開示されているか。
+
+------------------------------------------------
+【診断方針】
+
+あなたの目的は、単なる求人票の美化ではありません。
+
+求人票に書かれている情報と、求職者が本当に知りたい情報のギャップを特定し、
+企業と求職者の間の情報の非対称性を減らしてください。
+
+弱みや大変な点も、隠すのではなく、
+求職者に誤解を与えない形で、建設的に表現してください。
+
+求人票・通常分析結果・追加質問への回答を統合し、
+採用から定着までの知識アクセスを改善する提案を行ってください。
+
+------------------------------------------------
+【出力フォーマット】
+
+必ず以下の形式で回答してください。
+
+■採用力5領域診断 総合所見
+
+■5領域スコア
+育成力：
+魅力発信力：
+受入定着力：
+条件明確性：
+情報透明性：
+
+各項目について、High / Medium / Low の3段階で評価し、
+理由を簡潔に説明してください。
+
+■求職者から見た不安ポイント
+
+■求人票に追記すべき情報
+
+■面接・職場見学で説明すべき内容
+
+■入社前に伝えておくべき現実情報
+
+■入社後定着に向けた改善提案
+
+Level1：すぐできる改善
+Level2：制度・運用レベルの改善
+Level3：組織文化レベルの改善
+
+■改善後の求人票・採用ページ文案
+
+■補足：不確実性と追加確認が必要な点
+
+------------------------------------------------
+【重要ルール】
+
+・断定しすぎず、求人票と回答内容に基づいて診断すること。
+・法令違反の可能性がある場合は、通常分析結果も踏まえて注意喚起すること。
+・求職者に誤解を与える過度な美化表現は避けること。
+・企業の弱みは、隠すのではなく「事前説明すべき情報」として整理すること。
+・回答は経営者・人事担当者が理解できるように、実務的かつ簡潔にまとめること。
+`;
+
+    const userContext = `
+【最初の利用者入力】
+${originalQuestion}
+
+【通常の求人票分析結果】
+${basicAnalysis}
+
+【採用力5領域診断：追加質問への回答】
+${kadAnswersJson}
+
+上記を踏まえて、採用力5領域診断レポートを作成してください。
+`;
+
+    const result = await model.generateContent({
+      contents: [{
+        role: "user",
+        parts: [
+          { text: kadReportPrompt },
+          ...fixedKnowledgeParts,
+          ...uploadParts,
+          { text: userContext }
+        ]
+      }],
+      tools: [{ googleSearch: {} }]
+    });
+
+    const response = await result.response;
+    const aiAnswer = response.text();
+
+    console.log("KAD Five Area Diagnosis Success!");
+
+    return {
+      answer: aiAnswer,
+      success: true
+    };
+
+  } catch (error) {
+    console.error("KAD Diagnosis Error:", error);
+    return {
+      answer: `採用力5領域診断でAIエラーが発生しました。\n詳細: ${error.message}`,
+      success: false
+    };
+  }
+}
